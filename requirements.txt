@@ -1,0 +1,5 @@
+python-dotenv
+git+https://github.com/radbrt/llama_index.git@colcomments
+sqlalchemy
+snowflake-sqlalchemy
+streamlit
