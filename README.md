@@ -9,3 +9,27 @@ The slightly notable parts:
 - It includes an expandable "check the answer" section that again uses gpt to generate a human explanation of the final query, which it displays together with the original query.
 
 The whole thing is in Norwegian. It works reasonably well, but errors out on complex queries (and some uncomplicated ones as well).
+
+
+## Get it running
+
+The one file that is missing in this repo is the `.env` file that contains all the secrets such as database credentials and openAI API key.
+
+Create a file named `.env` and fill it like this:
+
+```
+SNOWFLAKE_ACCOUNT = '<ab12345.my-region.my-cloud>'
+SNOWFLAKE_USER = '<my-username>'
+SNOWFLAKE_PASSWORD = '<my-password>'
+SNOWFLAKE_WAREHOUSE = '<my-warehouse>'
+SNOWFLAKE_DATABASE = '<my-database>'
+SNOWFLAKE_SCHEMA = '<my-schema-name>'
+OPENAI_API_KEY = '<my-openai-api-key>'
+```
+
+Once this is done, it should suffice to run
+
+```sh
+pip install -r requirements.txt
+streamlit run app.py
+```
