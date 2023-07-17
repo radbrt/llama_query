@@ -13,7 +13,7 @@ import dotenv
 dotenv.load_dotenv(".env")
 
 # Setup the page layout
-st.set_page_config(page_title="My Streamlit App", layout='wide')
+st.set_page_config(page_title="Spør databasen", layout='wide')
 
 def chat_query_engine():
     
