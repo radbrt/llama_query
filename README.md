@@ -27,7 +27,7 @@ SNOWFLAKE_SCHEMA = '<my-schema-name>'
 OPENAI_API_KEY = '<my-openai-api-key>'
 ```
 
-Additionally, you need to alter the `app.py` file to use the table you want. Database and Schema is already configured, but the table name(s) must be set in the script itself.
+Additionally, you need to alter the `app.py` file to use the table you want. Database and Schema is already configured above, but the table name(s) must be set in the script itself.
 
 ```py
 tables_to_query = ["<my_table_name>"]
