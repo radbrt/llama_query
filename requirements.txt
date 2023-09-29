@@ -1,5 +1,4 @@
-python-dotenv
-git+https://github.com/radbrt/llama_index.git@colcomments
-sqlalchemy
-snowflake-sqlalchemy
 streamlit
+llama-index==0.7.9
+snowflake-sqlalchemy-2
+python-dotenv

@@ -1,7 +1,12 @@
 import streamlit as st
 from llama_index.indices.struct_store.sql_query import NLSQLTableQueryEngine
 from llama_index.indices.struct_store.sql_query import SQLDatabase
-from langchain import OpenAI
+
+# from llama_index.indices.struct_store import (
+#     NLSQLTableQueryEngine,
+#     SQLTableRetrieverQueryEngine,
+# )
+
 from langchain.chat_models import ChatOpenAI
 from snowflake.sqlalchemy import URL
 from sqlalchemy import create_engine
@@ -25,6 +30,16 @@ def chat_query_engine():
     schema = os.getenv("SNOWFLAKE_SCHEMA")
 
     tables_to_query = ["foretak_siste"]
+
+    # engine = snowflake.connector.connect(
+    #     user=user,
+    #     password=password,
+    #     account=account,
+    #     warehouse = warehouse,
+    #     database = database,
+    #     schema = schema,
+    #     role='DBT'
+    # )
 
     conn_str = URL(
         account = account,
