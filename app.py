@@ -29,7 +29,7 @@ def chat_query_engine():
     database = os.getenv("SNOWFLAKE_DATABASE")
     schema = os.getenv("SNOWFLAKE_SCHEMA")
 
-    tables_to_query = ["foretak_siste"]
+    tables_to_query = ["business_units", "employers", "job_ads"]
 
     # engine = snowflake.connector.connect(
     #     user=user,
@@ -53,9 +53,9 @@ def chat_query_engine():
     engine = create_engine(conn_str)
 
     sql_database = SQLDatabase(engine, include_tables=tables_to_query)
-    llm_predictor = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name="gpt-4"))
+    llm_predictor = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo"))
     service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
-    llm_predictor = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name="gpt-4"))
+    llm_predictor = LLMPredictor(llm=ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo"))
 
     sql_query_engine = NLSQLTableQueryEngine(
         sql_database=sql_database,
@@ -86,18 +86,18 @@ def main():
         if text:
             st.subheader("Svar:")
             try:
-              response = query_engine.query(text)
+                response = query_engine.query(text)
+                processed_text = text_process_function(response.response)  
             except Exception as e:
-                response = "Oops! Noe gikk galt. Prøv igjen."
-                
+                processed_text = text_process_function(str(e)) 
 
             processed_text = text_process_function(response.response)  # Your text processing function here
 
             st.write(f'{processed_text}')
 
-            
+
             query = response.metadata['sql_query']
-            chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", 
+            chat_completion = openai.ChatCompletion.create(model="gpt-4-1106-preview", 
                                                            messages=[
                                                                {"role": "system", "content": "You are a data analyst who give brief explanations of SQL queries"}, 
                                                                {"role": "user", "content": f"Hva gjør denne spørringen? {query}"}
